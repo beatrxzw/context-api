@@ -1,24 +1,13 @@
-import styled, {ThemeProvider} from 'styled-components'
-import { Theme } from './components/styles/theme'
-import {Card} from './components/card/index'
-import { GlobalStyle } from './components/styles/globalstyle'
-import { Main } from './components/main'
+import { AuthContext } from './contexts/Auth'
+import React, { useContext } from 'react'
+import PrivateRoutes from './routes/private.routes'
+import PublicRoutes from './routes/public.routes'
 
 
 function App() {
+const { auth } = useContext(AuthContext)
 
-  return (
-    <>
-  <ThemeProvider theme={Theme}>
-  <GlobalStyle/>
-    <Main>
-
-    <Card/>
-    
-    </Main>
-  </ThemeProvider>
-    </>
-  )
+  return auth ? <PrivateRoutes/> : <PublicRoutes/>
 }
 
 export default App

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonStyle = styled.a`
+export const ButtonStyle = styled.button`
     width: ${(props) => props.width || "23rem" } ;
     background-color: ${(props) => props.backgroundColor || props.theme.colors.black} ; 
     padding: 1rem 10rem;

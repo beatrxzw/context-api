@@ -1,6 +1,6 @@
 import { WrapperDiv, InputStyles, LabelStyles, DivInputLabel } from "./styles"
 
-export const InputGen = ({ type, name, placeholder, value, label }) => {
+export const InputGen = ({ type, name, placeholder, value, label, onChange }) => {
     return (
 
         <DivInputLabel>
@@ -12,7 +12,9 @@ export const InputGen = ({ type, name, placeholder, value, label }) => {
                 type={type}
                 value={value}
                 name={name}
-                placeholder={placeholder} />
+                placeholder={placeholder} 
+                onChange={onChange}
+                />
 
         </DivInputLabel>
 
