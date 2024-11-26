@@ -34,24 +34,25 @@
                 );
                 
                 //extraindo tokens 
-                const responseData = response.data;
-                const replaceData = responseData
-                .replace("seu token gerado é ", "")
-                .replace(", e o seu refresh token gerado é ", "|");
+                const{token,refreshToken} = response.data;
+                console.log(token)
+                // const replaceData = responseData
+                // .replace("seu token gerado é ", "")
+                // .replace(", e o seu refresh token gerado é ", "|");
 
-                console.log(replaceData);
+                // console.log(replaceData);
 
-                //dividindo
-                const tokens = replaceData.split("|");
-                const accessToken = tokens[0];
-                const refreshToken = tokens[1];
+                // //dividindo
+                // const tokens = replaceData.split("|");
+                // const accessToken = tokens[0];
+                // const refreshToken = tokens[1];
 
-                console.log( "accessToken: ",accessToken);
+                console.log( "accessToken: ",  token);
                 console.log("refreshToken: ",refreshToken);
 
-                if (accessToken && refreshToken) {
+                if (token && refreshToken) {
                     //atualiza contexto de autenticacao
-                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('accessToken', token);
                     setAuth(true);
                     localStorage.setItem("refreshToken", refreshToken)
     
