@@ -1,3 +1,3 @@
-# Tela de Login criada com styled-components
+# Tela de Login estilizada com styled-components, com autenticação usando jwt, axios e refresh token
 
 ## Objetivo: Estudo
