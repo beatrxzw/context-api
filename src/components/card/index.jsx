@@ -250,7 +250,7 @@
 
 import { AuthContext } from "../../contexts/Auth";
 import { useState, useContext } from "react";
-import { api } from "../../services/api";
+import { api, axiosPrivate } from "../../services/api";
 
 
 import { Box } from "./styles";
@@ -277,31 +277,40 @@ export const Card = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post('/auth/login', JSON.stringify({username: form.cnpj, password: form.password }),
+            const response = await api.post('/adm/login', JSON.stringify({ cnpj: form.cnpj, password: form.password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
 
-            const { accessToken, refreshToken } = response.data;
-            console.log(accessToken)
+            const { token, refreshToken } = response.data;
+            // console.log(token)
 
 
-            console.log("accessToken: ", accessToken);
+            console.log("Token: ", token);
             console.log("refreshToken: ", refreshToken);
 
-            if (accessToken && refreshToken) {
+            if (token && refreshToken) {
+
+                // document.cookie = `token=${token}; path=/;`; // Token de acesso
                 
-                setAuth({...auth, accessToken});
+                localStorage.setItem('accessToken', token);
+                // document.cookie = `refreshToken=${refreshToken}; path=/;`; // Refresh token
+
+
+                // localStorage.setItem("refreshToken", refreshToken)
+                
+                setAuth(true);
+
+                setAuth({ ...auth, token });
 
                 navigate("/allusers")
                 window.alert("Usuário logado com sucesso!")
             } else {
                 console.log("Tokens não encontrados na resposta.");
             }
-            
-            
-            
+
+
         } catch (error) {
             window.alert("Não foi possível realizar o Login")
             console.log('Erro ao realizar login', error);

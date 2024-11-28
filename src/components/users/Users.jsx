@@ -21,29 +21,29 @@
         };
 
     
-            useEffect(() => {
-                let isMounted = true;
-                const controller = new AbortController();
+            // useEffect(() => {
+            //     let isMounted = true;
+            //     const controller = new AbortController();
     
-                const getUsers = async () => {
-                    try {
-                        const response = await axios.get('https://dummyjson.com/users', {
-                            signal: controller.signal
-                        });
-                        console.log(response.data);
-                        isMounted && setUsers(response.data);
-                    } catch (error) {
-                        console.error(error)
-                    }
-                }
+            //     const getUsers = async () => {
+            //         try {
+            //             const response = await axios.get('https://dummyjson.com/users', {
+            //                 signal: controller.signal
+            //             });
+            //             console.log(response.data);
+            //             isMounted && setUsers(response.data);
+            //         } catch (error) {
+            //             console.error(error)
+            //         }
+            //     }
     
-                getUsers();
+            //     getUsers();
     
-                return () => {
-                    isMounted = false;
-                    controller.abort()
-                }
-            }, [])
+            //     return () => {
+            //         isMounted = false;
+            //         controller.abort()
+            //     }
+            // }, [])
 
 
         return (      
