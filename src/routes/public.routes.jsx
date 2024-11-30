@@ -5,12 +5,9 @@ import Login from '../pages/login'
 const PublicRoutes = ()  => {
 
   return (
-
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login/>}/>
       </Routes>
-    </BrowserRouter>
 
   )
 }

@@ -247,7 +247,7 @@
 //     )
 // }
 
-
+import React from "react";
 import { AuthContext } from "../../contexts/Auth";
 import { useState, useContext } from "react";
 import { api, axiosPrivate } from "../../services/api";
@@ -268,6 +268,13 @@ export const Card = () => {
     const navigate = useNavigate()
 
     console.log('auth', auth);
+
+    React.useEffect(() => {
+        const token = localStorage.getItem("accessToken");
+        if (token) {
+            navigate("/allusers")
+        }
+    }, [navigate])
 
 
     function handleChange(event) {
@@ -295,19 +302,18 @@ export const Card = () => {
                 // document.cookie = `token=${token}; path=/;`; // Token de acesso
                 
                 localStorage.setItem('accessToken', token);
-                // document.cookie = `refreshToken=${refreshToken}; path=/;`; // Refresh token
+                document.cookie = `refreshToken=${refreshToken}; path=/;`; // Refresh token
 
 
-                // localStorage.setItem("refreshToken", refreshToken)
-                
+                // localStorage.setItem("refreshToken", refreshToken)            
                 setAuth(true);
-
                 setAuth({ ...auth, token });
 
                 navigate("/allusers")
                 window.alert("Usuário logado com sucesso!")
             } else {
                 console.log("Tokens não encontrados na resposta.");
+                setAuth(false);
             }
 
 
